@@ -2,13 +2,17 @@ package groum;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 import org.apache.commons.io.FileUtils;
 import org.eclipse.jdt.core.JavaCore;
 import org.eclipse.jdt.core.dom.AST;
+import org.eclipse.jdt.core.dom.ASTNode;
 import org.eclipse.jdt.core.dom.ASTParser;
 import org.eclipse.jdt.core.dom.CompilationUnit;
+import org.eclipse.jdt.core.dom.StructuralPropertyDescriptor;
 
 public class AbstractSyntaxTree {
 	private CompilationUnit ast;
@@ -40,5 +44,25 @@ public class AbstractSyntaxTree {
 	
 	protected CompilationUnit getAST(){
 		return ast;
+	}
+	
+	protected ASTNode getRoot(){
+		return ast.getRoot();
+	}
+	
+	@SuppressWarnings("unchecked")
+	protected Object[] getChildren(ASTNode node) {
+	    List<StructuralPropertyDescriptor> list= node.structuralPropertiesForType();
+	    List<Object> children = new ArrayList<Object>();
+	    for (int i= 0; i < list.size(); i++) {
+	        StructuralPropertyDescriptor curr= list.get(i);
+	            Object child= node.getStructuralProperty(curr);
+	        if (child instanceof List) {
+	                children.add((List<ASTNode>) child);
+	        } else if (child instanceof ASTNode) {
+	            children.add(child);
+	        }
+	    }
+	    return children.toArray();
 	}
 }

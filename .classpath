@@ -430,5 +430,6 @@
 	<classpathentry kind="var" path="ECLIPSE_HOME/plugins/org.w3c.css.sac_1.3.1.v200903091627.jar"/>
 	<classpathentry kind="var" path="ECLIPSE_HOME/plugins/org.w3c.dom.smil_1.0.0.v200806040011.jar"/>
 	<classpathentry kind="var" path="ECLIPSE_HOME/plugins/org.w3c.dom.svg_1.1.0.v201011041433.jar"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/4"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
